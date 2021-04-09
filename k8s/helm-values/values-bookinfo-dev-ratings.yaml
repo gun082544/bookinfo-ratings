@@ -1,0 +1,19 @@
+ratings:
+  namespace: student57-bookinfo-dev
+  image: ghcr.io/gun082544/bookinfo-ratings
+  tag: dev
+  replicas: 1
+  imagePullSecrets: registry-bookinfo
+  port: 8080
+  healthCheckPath: "/health"
+  mongodbPasswordExistingSecret: bookinfo-dev-ratings-mongodb-secret
+ingress:
+  host: bookinfo.dev.opsta.net
+  path: "/student57/ratings(/|$)(.*)"
+  serviceType: ClusterIP
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+extraEnv:
+  SERVICE_VERSION: v2
+  MONGO_DB_URL: mongodb://bookinfo-dev-ratings-mongodb:27017/ratings
