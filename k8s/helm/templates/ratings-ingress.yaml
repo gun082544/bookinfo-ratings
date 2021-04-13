@@ -1,16 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: gun-ratings-uat
-  namespace: gun-bookinfo-uat
+  name: bookinfo-ratings-gun
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
 spec:
   rules:
   - http:
       paths:
-      - path: /gun/ratings(/|$)(.*)
-        pathType: Prefix
-        backend:
+      - backend:
           serviceName: gun-ratings-uat
-          servicePort: 8081
+          servicePort: 80
