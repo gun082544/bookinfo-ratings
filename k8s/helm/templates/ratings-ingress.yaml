@@ -13,6 +13,9 @@ spec:
     - http:
        paths:
        - path: /ratings(/|$)(.*)
+         pathType: Prefix
          backend:
-             serviceName: gun-ratings-uat
-             servicePort: 8081
+          service:
+             name: gun-ratings-uat
+             port:
+              number: 8081
