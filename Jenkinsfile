@@ -62,7 +62,7 @@ spec:
         container('docker') {
           script {
             // Do docker login authentication
-            docker.withRegistry('https://ghcr.io', 'gun-deploy-key') {
+            docker.withRegistry('https://ghcr.io', 'gun-github') {
               // Do docker build and docker push
               docker.build('ghcr.io/gun082544/bookinfo-ratings:${ENV_NAME}').push()
             } // End docker.withRegistry
