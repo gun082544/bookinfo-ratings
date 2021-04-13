@@ -11,6 +11,5 @@ spec:
        paths:
        - path: 
          backend:
-           service:
              ServiceName: gun-ratings-uat
              ServicPort: 8081
