@@ -1,7 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: service1
+  name: gun-ratings-uat
+  namespace: gun-bookinfo-uat
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
     appgw.ingress.kubernetes.io/backend-path-prefix: "/"
