@@ -1,5 +1,5 @@
 ratings:
-  namespace: student57-bookinfo-dev
+  namespace: gun-bookinfo-dev
   image: ghcr.io/gun082544/bookinfo-ratings
   tag: dev
   replicas: 1
@@ -8,8 +8,8 @@ ratings:
   healthCheckPath: "/health"
   mongodbPasswordExistingSecret: bookinfo-dev-ratings-mongodb-secret
 ingress:
-  host: bookinfo.dev.opsta.net
-  path: "/student57/ratings(/|$)(.*)"
+  host: bookinfo.dev.hellodolphin.in.th
+  path: "/gun/ratings(/|$)(.*)"
   serviceType: ClusterIP
   annotations:
     kubernetes.io/ingress.class: nginx
