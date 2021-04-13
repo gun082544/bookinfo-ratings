@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: bookinfo-ratings-gun
   annotations:
+    kubernetes.io/ingress.class: nginx
     kubernetes.io/ingress.class: azure/application-gateway
 spec:
   rules:
