@@ -1,22 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  {{- if .Values.ingress.annotations }}
+  name: service1
   annotations:
-  {{- range $key, $value := .Values.ingress.annotations }}
-    {{ $key }}: {{ $value | quote }}
-  {{- end }}
-  {{- end }}
-  name: {{ .Release.Name }}
-  namespace: {{ .Values.ratings.namespace }}
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/backend-path-prefix: "/"
 spec:
   rules:
-  - host: {{ .Values.ingress.host }}
-    http:
+  - http:
       paths:
-      - path: {{ .Values.ingress.path }}
-        pathType: Prefix
+      - path: /service2
         backend:
-          service:
-            serviceName: {{ .Release.Name }}
-            servicePort: {{ .Values.ratings.port }}
+          serviceName: gun-ratings-uat
+          servicePort: 8080
