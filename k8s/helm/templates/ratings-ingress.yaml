@@ -11,7 +11,7 @@ spec:
   rules:
     - http:
        paths:
-       - path: /service2
+       - path: /gun/ratings(/|$)(.*)
          backend:
              serviceName: gun-ratings-uat
              servicePort: 8081
