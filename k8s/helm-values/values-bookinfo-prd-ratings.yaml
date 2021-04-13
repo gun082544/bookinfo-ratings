@@ -9,7 +9,7 @@ ratings:
   mongodbPasswordExistingSecret: bookinfo-prd-ratings-mongodb-secret
 ingress:
   host: bookinfo.hellodolphin.in.th
-  path: "/student57/ratings(/|$)(.*)"
+  path: "/gun/ratings(/|$)(.*)"
   serviceType: ClusterIP
   annotations:
     kubernetes.io/ingress.class: nginx
