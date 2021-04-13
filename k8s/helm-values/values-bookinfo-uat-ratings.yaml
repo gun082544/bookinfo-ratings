@@ -1,5 +1,5 @@
 ratings:
-  namespace: student57-bookinfo-uat
+  namespace: gun-bookinfo-uat
   image: ghcr.io/gun082544/bookinfo-ratings
   tag: uat
   replicas: 1
@@ -8,7 +8,7 @@ ratings:
   healthCheckPath: "/health"
   mongodbPasswordExistingSecret: bookinfo-uat-ratings-mongodb-secret
 ingress:
-  host: bookinfo.uat.opsta.net
+  host: bookinfo.uat.hellodolphin.in.th
   path: "/student57/ratings(/|$)(.*)"
   serviceType: ClusterIP
   annotations:
