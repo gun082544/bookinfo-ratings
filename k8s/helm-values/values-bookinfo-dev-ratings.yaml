@@ -8,7 +8,7 @@ ratings:
   healthCheckPath: "/health"
   mongodbPasswordExistingSecret: bookinfo-dev-ratings-mongodb-secret
 ingress:
-  host: bookinfo.uat.hellodolphin.in.th
+  host: bookinfo.dev.hellodolphin.in.th
   path: "/gun/ratings(/|$)(.*)"
   serviceType: ClusterIP
   annotations:
