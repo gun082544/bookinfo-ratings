@@ -3,7 +3,7 @@ services:
     build: .
     image: ghcr.io/gun082544/bookinfo-ratings:prd
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       SERVICE_VERSION: v2
       MONGO_DB_URL: mongodb://mongodb:27017/ratings
