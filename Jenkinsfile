@@ -62,7 +62,7 @@ spec:
         container('docker') {
           script {
             // Do docker login authentication
-            docker.withRegistry('https://ghcr.io', 'gun-deploy-key') {
+            docker.withRegistry('https://ghcr.io', 'gun-ghcr') {
               // Do docker build and docker push
               docker.build('ghcr.io/gun082544/bookinfo-ratings:${ENV_NAME}').push()
             } // End docker.withRegistry
@@ -77,7 +77,7 @@ spec:
         container('helm') {
           script {
             // Use kubeconfig from Jenkins Credential
-            withKubeConfig([credentialsId: 'aks-k8s-kubeconfig']) {
+            withKubeConfig([credentialsId: 'gke-k8s-kubeconfig']) {
               // Run Helm upgrade
               sh "helm upgrade -i -f helm/helm-values/values-bookinfo-${ENV_NAME}-ratings.yaml --wait \
                 --set extraEnv.COMMIT_ID=${scmVars.GIT_COMMIT} \
