@@ -47,7 +47,7 @@ spec:
           script {
             docker.withRegistry('https://ghcr.io', 'gun-ghcr') {
               // Pulling UAT Image
-              uatImage = docker.image("ghcr.io/gun082544/ratings:uat")
+              uatImage = docker.image("ghcr.io/gun082544/bookinfo-ratings:uat")
               uatImage.pull()
               // Push UAT Image back with build tag
               uatImage.push("build-${BUILD_NUMBER}")
