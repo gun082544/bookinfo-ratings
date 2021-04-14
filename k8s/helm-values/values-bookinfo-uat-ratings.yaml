@@ -4,7 +4,7 @@ ratings:
   tag: uat
   replicas: 1
   imagePullSecrets: registry-bookinfo
-  port: 8080
+  port: 8081
   healthCheckPath: "/health"
   mongodbPasswordExistingSecret: bookinfo-uat-ratings-mongodb-secret
 ingress:
