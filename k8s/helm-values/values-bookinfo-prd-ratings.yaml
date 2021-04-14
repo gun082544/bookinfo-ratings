@@ -3,8 +3,8 @@ ratings:
   image: ghcr.io/gun082544/bookinfo-ratings
   tag: prd
   replicas: 1
-  imagePullSecrets: registry-bookinfo
-  port: 8080
+  imagePullSecrets: registry-github
+  port: 8081
   healthCheckPath: "/health"
   mongodbPasswordExistingSecret: bookinfo-prd-ratings-mongodb-secret
 ingress:
