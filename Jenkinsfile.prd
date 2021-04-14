@@ -51,7 +51,7 @@ spec:
           script {
             withKubeConfig([credentialsId: 'gke-k8s-kubeconfig']) {
               // Helm upgrade with set production tag
-              sh "helm upgrade -i -f helm/ratings-prod/values.yaml \
+              sh "helm upgrade -i -f k8s/helm-values/values-bookinfo-prd-ratings.yaml \
                 --set extraEnv.COMMIT_ID=${scmVars.GIT_COMMIT} \
                 --set ratings.tag=${params.TAG} \
                 --namespace gun-bookinfo-prd gun-ratings-prd k8s/helm"
