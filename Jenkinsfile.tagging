@@ -45,7 +45,7 @@ spec:
       steps {
         container('docker') {
           script {
-            docker.withRegistry('https://ghcr.io', 'gun-deploy-key') {
+            docker.withRegistry('https://ghcr.io', 'gun-ghcr') {
               // Pulling UAT Image
               uatImage = docker.image("ghcr.io/gun082544/ratings:uat")
               uatImage.pull()

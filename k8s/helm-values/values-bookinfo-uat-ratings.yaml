@@ -1,15 +1,15 @@
 ratings:
-  namespace: student57-bookinfo-uat
+  namespace: gun-bookinfo-uat
   image: ghcr.io/gun082544/bookinfo-ratings
   tag: uat
   replicas: 1
-  imagePullSecrets: registry-bookinfo
-  port: 8080
+  imagePullSecrets: registry-github
+  port: 8081
   healthCheckPath: "/health"
   mongodbPasswordExistingSecret: bookinfo-uat-ratings-mongodb-secret
 ingress:
-  host: bookinfo.uat.opsta.net
-  path: "/student57/ratings(/|$)(.*)"
+  host: bookinfo.uat.hellodolphin.in.th
+  path: "/gun/ratings(/|$)(.*)"
   serviceType: ClusterIP
   annotations:
     kubernetes.io/ingress.class: nginx
