@@ -29,7 +29,7 @@ spec:
     tty: true
     securityContext:
       privileged: true
-   - name: skan
+  - name: skan
     image: alcide/skan:v0.9.0-debug
     command:
     - cat
