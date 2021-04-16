@@ -16,4 +16,7 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 extraEnv:
   SERVICE_VERSION: v2
-  MONGO_DB_URL: mongodb://bookinfo-prd-ratings-mongodb:27017/ratings
+  MONGO_DB_URL: mongodb://bookinfo-prd-ratings-mongodb:27017/?authSource=ratings
+  MONGO_DB_NAME: ratings-prd
+  MONGO_DB_USERNAME: ratings-prd
+  COMMIT_Id: CHANGEME 
