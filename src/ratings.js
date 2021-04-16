@@ -54,6 +54,15 @@ if (process.env.SERVICE_VERSION === 'v2') {
     var password = process.env.MYSQL_DB_PASSWORD
   } else {
     var MongoClient = require('mongodb').MongoClient
+    var options = {}
+    if(process.env.MONGO_DB_USERNAME && process.env.MONGO_DB_PASSWORD) {
+      options = {
+        auth: {
+          user: process.env.MONGO_DB_USERNAME,
+          password: process.env.MONGO_DB_PASSWORD
+        }
+      }
+    }
     var url = process.env.MONGO_DB_URL
   }
 }
@@ -113,7 +122,7 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
               return
           }
           connection.query('SELECT Rating FROM ratings', function (dberr, results, fields) {
-            if (dberr) {
+              if (dberr) {
                   res.writeHead(500, {'Content-type': 'application/json'})
                   res.end(JSON.stringify({error: 'could not perform select'}))
                   console.log(err)
@@ -139,7 +148,7 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
           connection.end()
       })
     } else {
-      MongoClient.connect(url, function (err, client) {
+      MongoClient.connect(url, options, function (err, client) {
         var db = client.db(process.env.MONGO_DB_NAME)
         if (err) {
           res.writeHead(500, {'Content-type': 'application/json'})
@@ -150,8 +159,8 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
               res.writeHead(500, {'Content-type': 'application/json'})
               res.end(JSON.stringify({error: 'could not load ratings from database'}))
             } else {
-              firstRating = data[0].rating
-              secondRating = data[1].rating
+              firstRating = data[0].rating;
+              secondRating = data[1].rating;
               var result = {
                 id: productId,
                 ratings: {
