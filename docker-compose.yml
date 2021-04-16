@@ -6,7 +6,8 @@ services:
       - "8081:8081"
     environment:
       SERVICE_VERSION: v2
-      MONGO_DB_URL: mongodb://mongodb:27017/ratings
+      MONGO_DB_URL: mongodb://mongodb:27017/?authSource=ratings
+      MONGO_DB_NAME: ratings
   mongodb:
     image: bitnami/mongodb:4.4.4-debian-10-r5
     volumes:
