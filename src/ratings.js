@@ -112,8 +112,8 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
               console.log(err)
               return
           }
-          connection.query('SELECT Rating FROM ratings', function (err, results, fields) {
-              if (err) {
+          connection.query('SELECT Rating FROM ratings', function (dberr, results, fields) {
+            if (dberr) {
                   res.writeHead(500, {'Content-type': 'application/json'})
                   res.end(JSON.stringify({error: 'could not perform select'}))
                   console.log(err)
@@ -145,8 +145,8 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
           res.writeHead(500, {'Content-type': 'application/json'})
           res.end(JSON.stringify({error: 'could not connect to ratings database'}))
         } else {
-          db.collection('ratings').find({}).toArray(function (err, data) {
-            if (err) {
+          db.collection('ratings').find({}).toArray(function (dberr, data) {
+            if (dberr) {
               res.writeHead(500, {'Content-type': 'application/json'})
               res.end(JSON.stringify({error: 'could not load ratings from database'}))
             } else {
@@ -172,7 +172,9 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
       if (process.env.SERVICE_VERSION === 'v-faulty') {
         // in half of the cases return error,
         // in another half proceed as usual
-        var random = Math.random(); // returns [0,1]
+        const crypto = require('crypto');
+        var random        
+        random = crypto.randomBytes(4).readUInt32LE() / 0xffffffff ; // returns [0,1]
         if (random <= 0.5) {
           getLocalReviewsServiceUnavailable(res)
         } else {
@@ -182,7 +184,7 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
       else if (process.env.SERVICE_VERSION === 'v-delayed') {
         // in half of the cases delay for 7 seconds,
         // in another half proceed as usual
-        var random = Math.random(); // returns [0,1]
+        random = crypto.randomBytes(4).readUInt32LE() / 0xffffffff ; // returns [0,1]
         if (random <= 0.5) {
           setTimeout(getLocalReviewsSuccessful, 7000, res, productId)
         } else {
